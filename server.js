@@ -7,8 +7,9 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
 app.post('/stoplist', (req, res) => {
+  console.log(req.body);
   var url = 'https://api.vertrektijd.info/stop/_geo/' + req.body.lat + '/' + req.body.lng + '/0.3';
-  console.log(url);
+  
 
   var key = process.env.vertrektijdkey;
   
