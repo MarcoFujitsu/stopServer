@@ -6,6 +6,12 @@ const unirest = require('unirest');
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
+app.post('/stopinfo', (req, res) => {
+  console.log(req.body);
+
+  res.send(req.body);
+});
+
 app.post('/stoplist', (req, res) => {
   console.log(req.body);
   var url = 'https://api.vertrektijd.info/stop/_geo/' + req.body.lat + '/' + req.body.lng + '/0.3';
