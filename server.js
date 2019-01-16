@@ -15,6 +15,7 @@ app.post('/stoplist', (req, res) => {
   unirest.get(url)
   .headers({'Accept': 'application/json', 'Content-Type': 'application/json', 'X-Vertrektijd-Client-Api-Key' : key })
     .end(function(response){
+      console.log(response.body);
      // iterate through the stations returned in the body and create buttons for each one
       let buttons = [];
       for(i=0;i<response.body.length;i++)  {
