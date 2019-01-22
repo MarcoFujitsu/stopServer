@@ -29,7 +29,7 @@ app.post('/stoplist', (req, res) => {
   var url = 'https://api.vertrektijd.info/stop/_geo/' + req.body.lat + '/' + req.body.lng + '/0.3';
   
   axios.get(url)
-  .then(function(response){
+  .then( function(response){
     let buttons = [];
       for(i=0;i<response.data.length;i++)  {
           var button = 
@@ -52,9 +52,9 @@ app.post('/stoplist', (req, res) => {
 
       }  ]}
       res.send( myResponse);
-
-
-  });
+  })
+   
+  
 
 
 
@@ -62,7 +62,4 @@ app.post('/stoplist', (req, res) => {
 const PORT = process.env.PORT || 8080;
 app.listen(PORT, () => {
   console.log('ovstopfinder  listening on port ${PORT}...');
-
 });
-
-
