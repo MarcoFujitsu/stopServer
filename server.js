@@ -17,10 +17,10 @@ app.post('/stopinfo', (req, res) => {
   var url = "https://api.vertrektijd.info/departures/_stopcode/" + stopCode + "/";
   
   axios.get(url)
-  .then(function(response) {
+    .then(function(response) {
 
     res.send(response.data);
-  });
+    });
 
 });
 
@@ -53,6 +53,7 @@ app.post('/stoplist', (req, res) => {
       }  ]}
       res.send( myResponse);
   })
+});
    
   
 
