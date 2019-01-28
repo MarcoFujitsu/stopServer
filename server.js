@@ -50,21 +50,32 @@ app.post('/stopinfo', (req, res) => {
 
 
 function addToCarousel(departure) {
+    var name = departure.LineName + " - " + departure.Destination
+    var depTime = new Date(departure.ExpectedDeparture).toLocaleTimeString();
+    depTime = depTime.substring(0, depTime.length-3);
 
+      for(i=0; i< car.content.length; i++){
+          if(car.content[i].title == name ) {
+            // update existing stop with new time button
+            var button = { 
+              "Title" : depTime,
+              "type" : "postback",
+              "value" : depTime
+            }
+
+            car.content[i].buttons.push(button)
+            return;
+          }
+      }
       var content = {
         "title": departure.LineName + " - " + departure.Destination,
         "subtitle": departure.TransportType,
         "imageUrl": "https://cdn4.iconfinder.com/data/icons/eldorado-transport/40/bus_2-512.png",
         "buttons": [
           {
-            "title": departure.LineName + " - " + departure.Destination,
-            "type": "value",
-            "value": departure.JourneyNumber
-          },
-          {
-            "title": departure.LineName + " - " + departure.Destination,
-            "type": "value",
-            "value": departure.JourneyNumber
+            "Title" : depTime,
+            "type" : "postback",
+            "value" : depTime
           }
         ]
       };
