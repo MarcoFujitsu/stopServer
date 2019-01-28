@@ -59,7 +59,7 @@ function addToCarousel(departure) {
             // update existing stop with new time button
             var button = { 
               "Title" : depTime,
-              "type" : "postback",
+              "type" : "value",
               "value" : depTime
             }
 
@@ -74,7 +74,7 @@ function addToCarousel(departure) {
         "buttons": [
           {
             "Title" : depTime,
-            "type" : "postback",
+            "type" : "value",
             "value" : depTime
           }
         ]
