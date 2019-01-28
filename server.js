@@ -60,6 +60,11 @@ function addToCarousel(departure) {
             "title": departure.LineName + " - " + departure.Destination,
             "type": "value",
             "value": departure.JourneyNumber
+          },
+          {
+            "title": departure.LineName + " - " + departure.Destination,
+            "type": "value",
+            "value": departure.JourneyNumber
           }
         ]
       };
