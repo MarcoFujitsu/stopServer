@@ -7,6 +7,10 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
 var key = process.env.vertrektijdkey;
+var car = {
+   type: "carousel",
+  content : [] };
+
 axios.defaults.headers.common["Content-Type"] = "application/json";
 axios.defaults.headers.common["X-Vertrektijd-Client-Api-Key"] = key;
 
@@ -19,10 +23,49 @@ app.post('/stopinfo', (req, res) => {
   axios.get(url)
     .then(function(response) {
 
-    res.send(response.data);
-    });
+    
+    
+    // go through all departures, and put them in a unique list
+    let journeyNumbers = [];
+    var jn;
+    for(i=0;i<response.data.BTMF[0].Departures.length;i++)
+    {
+      jn = response.data.BTMF[0].Departures[i].JourneyNumber;
+      if( journeyNumbers.includes(jn) == false) {
+        journeyNumbers.push(jn);
+        addToCarousel(response.data.BTMF[0].Departures[i]);
+        console.log(response.data.BTMF[0].Departures[i]);
+      }
+      
+    }
 
+    var myResponse = 
+      { replies: [] };
+
+    myResponse.replies.push(car);
+    console.log(myResponse);
+    res.send(myResponse);
+    });
 });
+
+
+function addToCarousel(departure) {
+
+      var content = {
+        "title": departure.LineName + " - " + departure.Destination,
+        "subtitle": departure.TransportType,
+        "imageUrl": "https://cdn4.iconfinder.com/data/icons/eldorado-transport/40/bus_2-512.png",
+        "buttons": [
+          {
+            "title": departure.LineName + " - " + departure.Destination,
+            "type": "value",
+            "value": departure.JourneyNumber
+          }
+        ]
+      };
+      car.content.push(content);
+}
+
 
 app.post('/stoplist', (req, res) => {
   console.log(req.body);
