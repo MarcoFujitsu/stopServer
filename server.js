@@ -58,7 +58,7 @@ function addToCarousel(departure) {
           if(car.content[i].title == name ) {
             // update existing stop with new time button
             var button = { 
-              "Title" : depTime,
+              "title" : depTime,
               "type" : "value",
               "value" : depTime
             }
@@ -67,13 +67,14 @@ function addToCarousel(departure) {
             return;
           }
       }
+      // new button, create one
       var content = {
         "title": departure.LineName + " - " + departure.Destination,
         "subtitle": departure.TransportType,
         "imageUrl": "https://cdn4.iconfinder.com/data/icons/eldorado-transport/40/bus_2-512.png",
         "buttons": [
           {
-            "Title" : depTime,
+            "title" : depTime,
             "type" : "value",
             "value" : depTime
           }
