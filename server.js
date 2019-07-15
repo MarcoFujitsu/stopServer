@@ -14,6 +14,10 @@ var car = {
 axios.defaults.headers.common["Content-Type"] = "application/json";
 axios.defaults.headers.common["X-Vertrektijd-Client-Api-Key"] = key;
 
+app.get('/', (req, res) => {
+  res.send('hi')
+})
+
 app.post('/stopinfo', (req, res) => {
 
   var stopCode = req.body.stopCode;
@@ -114,13 +118,9 @@ app.post('/stoplist', (req, res) => {
       res.send( myResponse);
   })
 });
-   
-  
-
-
 
 // Listen to the App Engine-specified port, or 8080 otherwise
 const PORT = process.env.PORT || 8080;
 app.listen(PORT, () => {
-  console.log('ovstopfinder  listening on port ${PORT}...');
+  console.log('ovstopfinder  listening on port ' + PORT);
 });
